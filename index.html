@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Con mucho cariño, para ti</title>
+  <meta name="description" content="Una pequeña carta interactiva, hecha con cariño." />
+  <meta name="theme-color" content="#0D1B2A" />
+
+  <!-- ============================================
+       TIPOGRAFÍAS
+       Playfair Display (títulos) · Poppins (botones)
+       Georgia se usa como fuente de sistema para el cuerpo del texto
+  ============================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================
+       FONDO ANIMADO
+       Cielo nocturno construido íntegramente con CSS:
+       degradado, luna, estrellas y partículas flotantes.
+       Es un elemento decorativo fijo detrás de toda la experiencia.
+  ============================================ -->
+  <div class="sky" aria-hidden="true">
+    <div class="sky__gradient"></div>
+    <div class="moon"></div>
+    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- ============================================
+       PANTALLA DE BIENVENIDA
+       Primera pantalla que ve la persona al abrir la página.
+       Ocupa el 100% del viewport, sin scroll.
+  ============================================ -->
+  <section
+    class="screen welcome-screen"
+    id="welcomeScreen"
+    aria-label="Pantalla de bienvenida"
+  >
+    <div class="welcome-content">
+      <h1 class="welcome-title" id="welcomeTitle">Hola Alex...</h1>
+      <p class="welcome-subtitle" id="welcomeSubtitle">
+        Hoy preparé algo especial para ti <span aria-hidden="true">✨</span>
+      </p>
+      <button
+        type="button"
+        class="btn btn--primary"
+        id="openSurpriseBtn"
+        aria-label="Abrir la sorpresa"
+      >
+        <span aria-hidden="true">✨</span> Abrir sorpresa <span aria-hidden="true">✨</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ESCENARIO PRINCIPAL
+       Contiene el sobre y, posteriormente, la carta.
+       Permanece oculto hasta que se presiona "Abrir sorpresa".
+  ============================================ -->
+  <main class="screen main-scene" id="mainScene" aria-label="Escenario principal" hidden>
+
+    <!-- ============================================
+         SOBRE
+         Construido íntegramente con CSS: solapa, cuerpo,
+         triángulo frontal y sello central en forma de corazón.
+         Es el elemento interactivo principal (4 clics).
+    ============================================ -->
+    <div class="envelope-wrapper">
+      <div
+        class="envelope"
+        id="envelope"
+        role="button"
+        tabindex="0"
+        aria-label="Toca el sobre para abrir tu carta. Paso 1 de 4."
+        data-step="0"
+      >
+        <span class="envelope__shadow" aria-hidden="true"></span>
+
+        <span class="envelope__body" aria-hidden="true">
+          <span class="envelope__flap"></span>
+          <span class="envelope__triangle-left"></span>
+          <span class="envelope__triangle-right"></span>
+          <span class="envelope__pocket"></span>
+        </span>
+
+        <span class="seal" id="seal" aria-hidden="true">
+          <span class="seal__heart"></span>
+          <span class="seal__glow"></span>
+        </span>
+
+        <!-- La carta nace visualmente dentro del sobre y se desliza hacia afuera -->
+        <span class="letter" id="letter" aria-hidden="true">
+          <span class="letter__sheet letter__sheet--back"></span>
+          <span class="letter__sheet letter__sheet--front">
+            <span class="letter__scroll-area">
+              <header class="letter__header">
+                <p class="letter__eyebrow">Con mucho cariño para ti <span aria-hidden="true">❤️</span></p>
+                <p class="letter__ornament" aria-hidden="true">❤️ ✨</p>
+              </header>
+
+              <div class="letter__body">
+                <p>Holis, Holis, Alex.</p>
+
+                <p>Quería hacerte un pequeño detalle por el corto tiempo que vamos conociéndonos para decirte que valoro mucho todo lo que hemos hablado hasta ahora y el poco tiempo que se nos ha dado para pasarlo en persona.</p>
+
+                <p>Me alegra haberte conocido, eres en verdad un chico con muy buenos sentimientos y muy muy cariñoso.</p>
+
+                <p>Eres muy espontáneo y siempre tienes muchas cosas por decir, en verdad siempre digo que me gusta escuchar y contigo me gusta mucho más, tienes una linda voz, muy agradable.</p>
+
+                <p>Recuerda que eres excelente, un chico muy estudioso, trabajador, muy lindo y caballeroso, se nota que te han criado con buenos valores y para ser una buena persona.</p>
+
+                <p>No sabemos cómo terminarán las cosas, pero el conocer lindas personas siempre será algo positivo, y yo estoy agradecida por conocerte.</p>
+
+                <p>Hay pocos chicos como tú, en verdad eres un chico muy único y detergente jsjs, siempre tengo presente eso, recuerda que eso significa diferente, porque eres muy diferente a otros, eres mucho mejor que otros.</p>
+
+                <p>Así que, cuídate mucho y gracias por tus lindos mensajes cada día a pesar de cómo soy, y también por toda la paciencia que seguramente tienes conmigo.</p>
+
+                <p>Recuerda valoro mucho todo este tiempo y te quiero.</p>
+
+                <p class="letter__signature">Con mucho cariño,<br />K.</p>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn--secondary letter__close-btn"
+                id="closeLetterBtn"
+                aria-label="Cerrar la carta"
+                hidden
+              >
+                <span aria-hidden="true">💌</span> Cerrar carta
+              </button>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Texto guía que acompaña los primeros clics sobre el sobre -->
+    <p class="hint" id="envelopeHint" aria-live="polite">Toca el sobre para comenzar</p>
+  </main>
+
+  <!-- ============================================
+       PANTALLA FINAL
+       Aparece tras cerrar la carta. Muestra el mensaje
+       de despedida y un pequeño corazón latiendo.
+  ============================================ -->
+  <section
+    class="screen final-screen"
+    id="finalScreen"
+    aria-label="Pantalla final"
+    hidden
+  >
+    <div class="final-content">
+      <p class="final-message" id="finalMessage">
+        Espero que esta pequeña sorpresa haya dibujado una sonrisa en tu rostro <span aria-hidden="true">❤️</span>
+      </p>
+      <div class="final-heart" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       AUDIO
+       Elementos de audio precargados. Los archivos son
+       reemplazables y no contienen música con copyright.
+  ============================================ -->
+  <audio id="sfxClick" src="assets/sounds/click.mp3" preload="auto"></audio>
+  <audio id="sfxPaper" src="assets/sounds/paper.mp3" preload="auto"></audio>
+  <audio id="sfxOpenEnvelope" src="assets/sounds/open-envelope.mp3" preload="auto"></audio>
+  <audio id="sfxSparkle" src="assets/sounds/sparkle.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="assets/music/background-music.mp3" preload="auto" loop></audio>
+
+  <!-- Botón discreto de música, controlado por script.js -->
+  <button
+    type="button"
+    class="music-toggle"
+    id="musicToggle"
+    aria-label="Activar o silenciar la música de fondo"
+    aria-pressed="false"
+  >
+    <span class="music-toggle__icon" aria-hidden="true"></span>
+  </button>
+
+  <!-- ============================================
+       SCRIPTS
+  ============================================ -->
+  <script src="js/script.js"></script>
+</body>
+</html>
